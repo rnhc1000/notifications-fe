@@ -1,0 +1,36 @@
+<app-navbar />
+<div class="message-form-container">
+  <form (ngSubmit)="submitHandler()" #myForm="ngForm" class="message-card message-form fadeIn fourth">
+
+    <div class="message-form-controls-container">
+      <div>
+        <input class="message-form-control" type="name" id="name" name="name" placeholder="Enter your name"
+          [(ngModel)]="name" name="name" required>
+      </div>
+      <div>
+        <input class="message-form-control" type="email" id="email" placeholder="Enter your email" [(ngModel)]="email"
+          name="email" required autofocus>
+      </div>
+      <div>
+        <input class="message-form-control" type="phone" id="phone" placeholder="Enter your phone number"
+          [(ngModel)]="phoneNumber" name="phoneNumber" required autofocus>
+      </div>
+      <div>
+        <input class="message-form-control" type="message" id="message" name="message" placeholder="Enter your message"
+          [(ngModel)]="message" name="message" required>
+      </div>
+      <div>
+        <button type="submit" class="underlineHover message-btn message-text message-btn-primary ">
+          {{ formMode ? 'Register' : 'Send Message'}}
+        </button>
+      </div>
+      <div>
+        <h2 class="message-text underlineHover" onkeydown="" (click)="toggleMode()">
+          Switch to {{ !formMode ? 'Register' : 'message' }}
+        </h2>
+      </div>
+
+    </div>
+  </form>
+</div>
+<app-footer />

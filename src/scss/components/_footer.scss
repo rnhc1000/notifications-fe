@@ -1,0 +1,19 @@
+.footer-container {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--black-010);
+    background-color: var(--blue);
+
+  }
+
+  div > h5 {
+    
+    color: var(--black);
+    margin: 1rem auto;
+    font-weight: 400;
+    font-size: 2rem;
+  }

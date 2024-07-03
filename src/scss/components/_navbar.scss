@@ -1,0 +1,35 @@
+header {
+    background-color: rgba(81, 90, 226, 0.1);
+    box-shadow: 0 2px 3px rgba(81, 90, 226, 0.5);
+}
+
+header nav#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    max-width: 1240px;
+    padding: 0 4rem;
+    height: 6rem;
+}
+
+
+
+header nav#navbar ul.nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: right;
+    list-style: none;
+    gap: 4rem;
+}
+
+header nav#navbar ul.nav-list li a {
+    color: var(--black);
+    font-size: 1.5rem;
+    text-decoration: none;
+
+}
+
+header nav#navbar ul.nav-list li a:hover {
+    font-size: 1.75rem;
+    color: rgb(81, 90, 226);
+}
