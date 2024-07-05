@@ -1,27 +1,101 @@
-# NotificationFe
+## Take-home Microservices Challenge
+This is how we faced the challenge of creating a frontend UI  to explore
+noitifications-api features
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+## _Table of contents_
+- [Take-home Microservices Challenge](#take-home-microservices-challenge)
+- [_Table of contents_](#table-of-contents)
+- [_Overview_](#overview)
+- [_Screenshot_](#screenshot)
+- [_Links_](#links)
+- [_Built with_](#built-with)
+- [_How I did it_](#how-i-did-it)
+- [_Continued development_](#continued-development)
+  - [_Useful resources_](#useful-resources)
+- [_Author_](#author)
+- [Acknowledgments](#acknowledgments)
+## _Overview_
+These web pages were coded using Angular 18
+- src|
+    - App.tsx
+    - assets|
+    - components|
+      - Contact
+      - Footer
+      - Header
+      - Project
+      - Skill
+      - welcome
+    - routes
+      - Contacts
+      - Feet
+      - Home
+      - Intro
+      - Projects
+      - Skills
+    - utils
+   - App.tsx
+   - index.css
+   - main.tsx
+   - index.html
+   - tsconfig.json
+   - tsconfig.node.json
+   - vite.config.js
+   - yarn.lock
+- public|
 
-## Development server
+## _Screenshot_
+[![](./notification.png)]()
+## _Links_
+- Live Site URL: [https://www.ferreiras.dev.br] 
+## _Built with_
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+[![My Skills](https://skillicons.dev/icons?i=git,angular,typescript,html,scss, vscode,redhat)](https://skillicons.dev)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+ ## _How I did it_
+```jsx
+export class HomeComponent {
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  @ViewChild('myForm', { static: true }) messageForm!: NgForm;
+  email!: string;
+  phoneNumber!: string;
+  name!: string;
+  message!: string;
+  maxChars = 160;
+  formMode = false; 
+  hasError = null;
+  submitted = false;
 
-## Running unit tests
+ 
+  
+  constructor(
+    private router: Router) {
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  }
 
-## Running end-to-end tests
+  toggleMode() {
+    this.formMode = !this.formMode;
+  }
+  
+  submitHandler() {
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    this.submitted = true; 
 
-## Further help
+  }
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  
+}
+
+``` 
+
+## _Continued development_
+- maybe
+### _Useful resources_
+- [https://angular.io] Build user interfaces out of individual pieces called components!.
+
+## _Author_
+- Website - [https://ferreiras.dev.br] 
+## Acknowledgments
+- 
