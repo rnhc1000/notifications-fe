@@ -1,33 +1,28 @@
 <app-navbar />
-<div class="message-form-container">
+<div class="message-form-container" >
   <form (ngSubmit)="submitHandler()" #myForm="ngForm" class="message-card message-form fadeIn fourth">
 
     <div class="message-form-controls-container">
       <div>
-        <input class="message-form-control" type="name" id="name" name="name" placeholder="Enter your name"
-          [(ngModel)]="name" name="name" required>
+        <input maxlength="15" class="message-form-control" type="phone" id="phone" placeholder="Enter your phone number"
+          [(ngModel)]="phoneNumber" name="phone" required autofocus>
       </div>
       <div>
         <input class="message-form-control" type="email" id="email" placeholder="Enter your email" [(ngModel)]="email"
           name="email" required autofocus>
       </div>
       <div>
-        <input class="message-form-control" type="phone" id="phone" placeholder="Enter your phone number"
-          [(ngModel)]="phoneNumber" name="phoneNumber" required autofocus>
+        <input class="message-form-control" type="name" id="name" name="name" placeholder="Enter your name"
+          [(ngModel)]="name" name="name" required>
+
       </div>
-      <div>
-        <input class="message-form-control" type="message" id="message" name="message" placeholder="Enter your message"
-          [(ngModel)]="message" name="message" required>
-      </div>
+      <textarea  [maxlength]="maxChars" #myInput  class="message-form-control" type="message" id="message" name="message" placeholder="Enter your message"
+        [(ngModel)]="message" name="message" required
+        ></textarea><label class="textarea-form">remaining characters: {{ myInput.value.length }} / {{maxChars}}</label>
       <div>
         <button type="submit" class="underlineHover message-btn message-text message-btn-primary ">
-          {{ formMode ? 'Register' : 'Send Message'}}
+          Send Message
         </button>
-      </div>
-      <div>
-        <h2 class="message-text underlineHover" onkeydown="" (click)="toggleMode()">
-          Switch to {{ !formMode ? 'Register' : 'message' }}
-        </h2>
       </div>
 
     </div>

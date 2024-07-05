@@ -1,10 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink , Router } from '@angular/router';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { NgForm, FormsModule } from '@angular/forms';
+import { NgForm, FormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
 
@@ -16,7 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     NavbarComponent,
     FooterComponent,
     FormsModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -28,9 +27,12 @@ export class HomeComponent {
   phoneNumber!: string;
   name!: string;
   message!: string;
-  
+  maxChars = 160;
   formMode = false; // true == register
   hasError = null;
+  submitted = false;
+
+ 
   
   constructor(
     private router: Router) {
@@ -40,8 +42,10 @@ export class HomeComponent {
   toggleMode() {
     this.formMode = !this.formMode;
   }
-
+  
   submitHandler() {
+
+    this.submitted = true; 
 
   }
 
