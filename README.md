@@ -16,76 +16,92 @@ noitifications-api features
 - [Acknowledgments](#acknowledgments)
 ## _Overview_
 These web pages were coded using Angular 18
+The design is structured as shown:
 - src|
-    - App.tsx
-    - assets|
-    - components|
-      - Contact
-      - Footer
-      - Header
-      - Project
-      - Skill
-      - welcome
-    - routes
-      - Contacts
-      - Feet
-      - Home
-      - Intro
-      - Projects
-      - Skills
-    - utils
-   - App.tsx
-   - index.css
-   - main.tsx
-   - index.html
-   - tsconfig.json
-   - tsconfig.node.json
-   - vite.config.js
-   - yarn.lock
-- public|
-
+  - app |
+     - components |
+          -  header
+          -  footer
+     -  pages
+  - assets |
+  - scss|
+    - base
+    -  components
+       -  footer
+       -  header
+    -  layout
+  - _index.scss
+- index.html
+- main.ts
+- styles.css 
 ## _Screenshot_
 [![](./notification.png)]()
 ## _Links_
 - Live Site URL: [https://www.ferreiras.dev.br] 
 ## _Built with_
 
-[![My Skills](https://skillicons.dev/icons?i=git,angular,typescript,html,scss, vscode,redhat)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=ts,angular,git,materialui,html,scss,redhat,vscode)](https://skillicons.dev)
 
 
 
  ## _How I did it_
 ```jsx
-export class HomeComponent {
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { EventEmitter, Injectable } from '@angular/core';
+import { MessageData } from '../interface/imessage-data';
+import { SubscriberData } from '../interface/isubscriber-data';
+import { catchError, retry, tap, throwError } from 'rxjs';
 
-  @ViewChild('myForm', { static: true }) messageForm!: NgForm;
-  email!: string;
-  phoneNumber!: string;
-  name!: string;
-  message!: string;
-  maxChars = 160;
-  formMode = false; 
-  hasError = null;
-  submitted = false;
+@Injectable({
+  providedIn: 'root'
+})
 
- 
-  
+export class MessageService {
+
+
+  statusChange: EventEmitter<any> = new EventEmitter();
+
   constructor(
-    private router: Router) {
+    private http: HttpClient,
+  ) { }
+
+  register(data: SubscriberData) {
+    return this.http.post<MessageData>('http://127.0.0.1/:8095/messages', {
+      username: data.username,
+      email: data.email,
+      phone: data.phone,
+      message: data.message
+    }
+    ).pipe(
+      catchError(this.handleErrors),
+      tap((response: any) => {
+        this.statusChange.emit(response);
+        console.log(response);
+      }),
+
+    );
 
   }
 
-  toggleMode() {
-    this.formMode = !this.formMode;
-  }
-  
-  submitHandler() {
-
-    this.submitted = true; 
-
+  getMessages(data: MessageData) {
+    return this.http.get<MessageData[]>('http://127.0.0.1/:8095/messages')
+      .pipe(
+        retry(2),
+        catchError(this.handleErrors)
+      )
   }
 
-  
+  handleErrors(errObject: HttpErrorResponse) {
+
+    if (errObject.status === 0) {
+      return throwError('Sorry! Message Services not Available! Try again later!!!')
+    }
+
+    return throwError(errObject.error);
+
+  }
+
+
 }
 
 ``` 

@@ -99,11 +99,21 @@
   
   .textarea-form {
     font-size: 0.75rem;
+    margin-top: 0.5rem;
     color: var(--black-10);
   }
+
   .message-text {
     font-size: 2rem;
-    color: var(----black);
+    color: var(--black);
+    text-align: center;
+    display: block;
+  }
+
+  .message-service {
+    margin-top: 1rem;
+    font-size: 2rem;
+    color: var(--black);
     text-align: center;
     display: block;
   }
