@@ -18,8 +18,8 @@ export class MessageService {
   ) { }
 
   register(data: SubscriberData) {
-    return this.http.post<MessageData>('http://127.0.0.1/:8095/messages', {
-      username: data.username,
+    return this.http.post<MessageData>('http://192.168.15.11:8095/messages', {
+      sender: data.sender,
       email: data.email,
       phone: data.phone,
       message: data.message
@@ -36,7 +36,7 @@ export class MessageService {
   }
 
   getMessages(data: MessageData) {
-    return this.http.get<MessageData[]>('http://127.0.0.1/:8095/messages')
+    return this.http.get<MessageData[]>('http://192.168.15.11:8095/messages')
       .pipe(
         retry(2),
         catchError(this.handleErrors)

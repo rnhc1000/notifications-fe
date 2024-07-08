@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('myForm', { static: true }) messageForm!: NgForm;
   email!: string;
   phoneNumber!: string;
-  name!: string;
+  sender!: string;
   message!: string;
   maxChars = 160;
   formMode = false;
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
       this.messageForm.form.setValue({
         phone: '+0013121234567',
         email: 'ricardo@ferreiras.dev.br',
-        name: 'Ricardo Ferreira',
+        sender: 'Ricardo Ferreira',
         message: 'The quick brown fox dog jumps over the lazy dog....'
       });
     }, 1000);
