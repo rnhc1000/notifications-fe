@@ -1,24 +1,37 @@
 <app-navbar />
-<div class="message-form-container" >
+<section>
+  <div class="message-service">
+  Messages Notification Services
+</div>
+</section>
+<div class="message-form-container">
+  
   <form (ngSubmit)="submitHandler()" #myForm="ngForm" class="message-card message-form fadeIn fourth">
 
     <div class="message-form-controls-container">
+
       <div>
-        <input maxlength="15" class="message-form-control" type="phone" id="phone" placeholder="Enter your phone number"
-          [(ngModel)]="phoneNumber" name="phone" required autofocus>
+        <input class="message-form-control" type="name" id="name" name="name" placeholder="Enter your name"
+          [(ngModel)]="name" name="name" required>
       </div>
+
       <div>
         <input class="message-form-control" type="email" id="email" placeholder="Enter your email" [(ngModel)]="email"
           name="email" required autofocus>
       </div>
-      <div>
-        <input class="message-form-control" type="name" id="name" name="name" placeholder="Enter your name"
-          [(ngModel)]="name" name="name" required>
 
+      <div>
+        <input class="message-form-control" maxlength="15" class="message-form-control" type="phone" id="phone"
+          placeholder="Enter your phone number" [(ngModel)]="phoneNumber" name="phone" required autofocus>
       </div>
-      <textarea  [maxlength]="maxChars" #myInput  class="message-form-control" type="message" id="message" name="message" placeholder="Enter your message"
-        [(ngModel)]="message" name="message" required
-        ></textarea><label class="textarea-form">remaining characters: {{ myInput.value.length }} / {{maxChars}}</label>
+
+      <div class="textarea-form">
+        <textarea  [maxlength]="maxChars" #myInput class="message-form-control"
+          type="message" id="message" name="message" placeholder="Enter your message" [(ngModel)]="message"
+          name="message" required>
+        </textarea><label class="textarea-form">remaining characters: {{ myInput.value.length }} / {{maxChars}}</label>
+      </div>
+
       <div>
         <button type="submit" class="underlineHover message-btn message-text message-btn-primary ">
           Send Message
