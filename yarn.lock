@@ -159,7 +159,7 @@
     vite "5.2.11"
     watchpack "2.4.1"
 
-"@angular/cdk@18.0.6":
+"@angular/cdk@^18.0.6", "@angular/cdk@18.0.6":
   version "18.0.6"
   resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-18.0.6.tgz"
   integrity sha512-9CmlQ8uZ0cHuj+1jDdabbFw90QpjrJzh1/cgeHN/8vAGE4ranxX3l6cqpVxuoWRLkB2ykTHt2xeoTM8y0d9ERA==

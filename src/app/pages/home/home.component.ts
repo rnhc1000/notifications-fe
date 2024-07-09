@@ -5,24 +5,25 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { MessageService } from '../../services/message.service';
 import { MessageData } from '../../interface/imessage-data';
+import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.component";
 
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    RouterLink,
-    NavbarComponent,
-    FooterComponent,
-    FormsModule,
-    CommonModule,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    selector: 'app-home',
+    standalone: true,
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
+    imports: [
+        RouterLink,
+        NavbarComponent,
+        FooterComponent,
+        FormsModule,
+        CommonModule,
+        TimeOfDayComponent
+    ]
 })
 
 export class HomeComponent implements OnInit {
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('myForm', { static: true }) messageForm!: NgForm;
   email!: string;
   phoneNumber!: string;
-  name!: string;
+  sender!: string;
   message!: string;
   maxChars = 160;
   formMode = false;
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
       this.messageForm.form.setValue({
         phone: '+0013121234567',
         email: 'ricardo@ferreiras.dev.br',
-        name: 'Ricardo Ferreira',
+        sender: 'Ricardo Ferreira',
         message: 'The quick brown fox dog jumps over the lazy dog....'
       });
     }, 1000);
@@ -90,17 +91,43 @@ export class HomeComponent implements OnInit {
 
   handleSuccess(data: MessageData) {
 
-    this.router.navigate(['./messages']);
+    const timeStampSent = new Date(data.createdAt);
+    
+    const dateAndTime: string  = timeStampSent.toLocaleString();
 
+    Swal.fire({
+      titleText: 'Message Sent at!',
+      text: dateAndTime,
+      icon: 'success',
+      showCancelButton: false,
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true
+
+    }).then((result) => {
+      
+          setTimeout(() => {
+            this.messageForm.form.setValue({
+              phone: '+0013121234567',
+              email: 'ricardo@ferreiras.dev.br',
+              sender: 'Ricardo Ferreira',
+              message: 'The quick brown fox dog jumps over the lazy dog....'
+            });
+          }, 1000);
+      
+        }
+      )
   }
+
 
   handleErrors(error: HttpErrorResponse) {
 
-    console.error('An error ocurred, error.error');
-    if (error.status === 0) {
+    console.error('An error ocurred...');
+    console.log(error.error);
+    if (error) {
       Swal.fire({
-        title: 'Check your network connectivity!',
-        text: 'Try again!',
+        title: 'Message Notifications Services Not Available!!!',
+        text: 'Check your network connectivity!',
         icon: 'error',
         showCancelButton: false,
         confirmButtonText: `

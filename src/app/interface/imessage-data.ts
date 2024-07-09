@@ -2,6 +2,10 @@ export interface MessageData {
     
         [x: string]: string;
         createdAt: string,
-        messageStatus: string,
+        status: string,
+        message: string,
+        email: string,
+        phone: string,
+        messageId: string
     }
 

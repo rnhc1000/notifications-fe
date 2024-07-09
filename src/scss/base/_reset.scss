@@ -1,3 +1,6 @@
+@use '@material/angular' as mat;
+
+@include mat.core();
 
 * {
     margin: 0;

@@ -1,10 +1,52 @@
 <app-navbar />
 <section>
-    <div >
-        <textarea class="message">
-        Adipisicing aliqua sint cillum est est anim magna ex ipsum.
-    </textarea>
-    </div>
+    <app-time-of-day />
+    <table mat-table class="lessons-table mat-elevation-z8" [dataSource]="messages">
+        <ng-container matlumnDef="ID">
+
+            <th mat-header-cell *matHeaderllDef>#</th>
+
+            <td mat-cell *matCellDef="let messages">{{ messages.messageId}}</td>
+
+        </ng-container>
+
+        <ng-container matlumnDef="phone">
+
+            <th mat-header-cell *matHeaderllDef>#</th>
+
+            <td mat-cell *matCellDef="let messages">{{ messages.phone }}</td>
+
+        </ng-container>
+
+        <ng-container matlumnDef="email">
+
+            <th mat-header-cell *matHeaderllDef>#</th>
+
+            <td mat-cell *matCellDef="let messages">{{ messages.email }}</td>
+
+        </ng-container>
+
+        <ng-container matlumnDef="message">
+
+            <th mat-header-cell *matHeaderllDef>#</th>
+
+            <td mat-cell *matCellDef="let messages">{{ messages.message }}</td>
+
+        </ng-container>
+
+        <ng-container matlumnDef="createdAt">
+
+            <th mat-header-cell *matHeaderllDef>#</th>
+
+            <td class="duration-cell" mat-cell *matCellDef="let messages">{{ messages.createdAt }}</td>
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let messages;columns:displayedColumns"></tr>
+
+
+    </table>
 </section>
 
 <app-footer />

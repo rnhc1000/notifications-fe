@@ -3,6 +3,7 @@
   <div class="message-service">
   Messages Notification Services
 </div>
+<app-time-of-day />
 </section>
 <div class="message-form-container">
   
@@ -12,7 +13,7 @@
 
       <div>
         <input class="message-form-control" type="name" id="name" name="name" placeholder="Enter your name"
-          [(ngModel)]="name" name="name" required>
+          [(ngModel)]="sender" name="sender" required>
       </div>
 
       <div>

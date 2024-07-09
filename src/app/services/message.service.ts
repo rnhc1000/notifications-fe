@@ -18,38 +18,39 @@ export class MessageService {
   ) { }
 
   register(data: SubscriberData) {
-    return this.http.post<MessageData>('http://127.0.0.1/:8095/messages', {
-      username: data.username,
+
+    return this.http.post<SubscriberData>('http://192.168.15.11:8095/messages', {
+      sender: data.sender,
       email: data.email,
       phone: data.phone,
       message: data.message
-    }
-    ).pipe(
+    })
+    .pipe(
       catchError(this.handleErrors),
       tap((response: any) => {
         this.statusChange.emit(response);
         console.log(response);
       }),
-
     );
 
   }
 
-  getMessages(data: MessageData) {
-    return this.http.get<MessageData[]>('http://127.0.0.1/:8095/messages')
+  getMessages(data: MessageData[], MessageData: any) {
+
+    return this.http.get<MessageData[]>('http://192.168.15.11:8095/messages')
       .pipe(
         retry(2),
         catchError(this.handleErrors)
       )
   }
 
-  handleErrors(errObject: HttpErrorResponse) {
+  handleErrors(errObject: HttpErrorResponse, any: any) {
 
     if (errObject.status === 0) {
-      return throwError('Sorry! Message Services not Available! Try again later!!!')
+      return errObject.error; 
     }
 
-    return throwError(errObject.error);
+    return errObject;
 
   }
 
