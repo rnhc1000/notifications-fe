@@ -1,42 +1,63 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MessageData } from '../../interface/imessage-data';
-import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.component";
 import { MessageService } from '../../services/message.service';
-import { Observable } from 'rxjs';
-
+import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.component";
+import { DataTablesModule } from 'angular-datatables';
+import { Subject } from 'rxjs';
+import { Config } from 'datatables.net';
+import 'datatables.net-buttons-dt';
+import 'datatables.net-buttons/js/buttons.colVis.mjs';
+import 'datatables.net-buttons/js/buttons.html5.mjs';
+import 'datatables.net-buttons/js/buttons.print.mjs';
 
 @Component({
-    selector: 'app-messages',
-    standalone: true,
-    templateUrl: './messages.component.html',
-    styleUrl: './messages.component.scss',
-    imports: [
-        RouterLink,
-        FooterComponent,
-        NavbarComponent,
-        MatGridListModule,
-        TimeOfDayComponent
-    ]
+  selector: 'app-messages',
+  standalone: true,
+  templateUrl: './messages.component.html',
+  styleUrl: './messages.component.scss',
+  imports: [
+    RouterLink,
+    FooterComponent,
+    NavbarComponent,
+    TimeOfDayComponent,
+    DataTablesModule,
+    CommonModule,
+    NgFor
+  ]
 })
-export class MessagesComponent extends DataSource<MessageData>{
-messages: any;
+export class MessagesComponent implements OnInit, OnDestroy {
+  public messages: MessageData[] = [];
 
-  override connect(collectionViewer: CollectionViewer): Observable<readonly MessageData[]> {
-    throw new Error('Method not implemented.');
+  dtOptions: Config = {};
+
+  dtTrigger: Subject<any> = new Subject<any>
+
+
+
+  constructor(private messageService: MessageService,
+    
+  ) {
+
   }
-  override disconnect(collectionViewer: CollectionViewer): void {
-    throw new Error('Method not implemented.');
+
+  ngOnInit(): void {
+    this.fetchMessages();
   }
 
-  constructor(private messageService: MessageService)  {
-    super();
+  fetchMessages(): void {
+    this.messageService.getMessages()
+    .subscribe((response: any) => {
+      this.messages = response;
+      this.dtTrigger.next;
+    });
   }
 
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
 
-
+  }
 }

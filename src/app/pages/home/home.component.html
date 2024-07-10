@@ -30,7 +30,7 @@
         <textarea  [maxlength]="maxChars" #myInput class="message-form-control"
           type="message" id="message" name="message" placeholder="Enter your message" [(ngModel)]="message"
           name="message" required>
-        </textarea><label class="textarea-form">remaining characters: {{ myInput.value.length }} / {{maxChars}}</label>
+        </textarea><p class="textarea-form-message">remaining characters: {{ myInput.value.length }} / {{maxChars}}</p>
       </div>
 
       <div>
