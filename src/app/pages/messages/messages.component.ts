@@ -24,7 +24,8 @@ import { Observable } from 'rxjs';
     ]
 })
 export class MessagesComponent extends DataSource<MessageData>{
-  
+messages: any;
+
   override connect(collectionViewer: CollectionViewer): Observable<readonly MessageData[]> {
     throw new Error('Method not implemented.');
   }

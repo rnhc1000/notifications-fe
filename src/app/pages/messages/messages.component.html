@@ -1,12 +1,15 @@
 <app-navbar />
 <section>
+    <div class="message-service">
+        Message Notification Service
+      </div>
     <app-time-of-day />
-    <table mat-table class="lessons-table mat-elevation-z8" [dataSource]="messages">
+    <table mat-table class="lessons-table mat-elevation-z8" >
         <ng-container matlumnDef="ID">
 
             <th mat-header-cell *matHeaderllDef>#</th>
 
-            <td mat-cell *matCellDef="let messages">{{ messages.messageId}}</td>
+            <td mat-cell *matCellDef="let messages">{{ messages.messageId }}</td>
 
         </ng-container>
 
@@ -44,7 +47,6 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let messages;columns:displayedColumns"></tr>
-
 
     </table>
 </section>

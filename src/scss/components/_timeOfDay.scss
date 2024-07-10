@@ -1,7 +1,8 @@
 .timeOfDay {
-    color: var(--black);  
+    display: flex;
+    justify-content: right;
+    font-size: 1.5rem;
+    color: var(--black); 
+    margin-right: 2rem;
 }
 
-div > h2 {
-    font-size: 2rem;
-}
