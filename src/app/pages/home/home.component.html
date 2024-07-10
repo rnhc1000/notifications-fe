@@ -1,27 +1,28 @@
 <app-navbar />
 <section>
   <div class="message-service">
-  Messages Notification Services
-  <app-time-of-day/>
+  Message Notification Service
 </div>
+<app-time-of-day />
 </section>
 <div class="message-form-container">
   
-  <form (ngSubmit)="submitHandler()" #myForm="ngForm"  class="message-form-control">
+  <form (ngSubmit)="submitHandler()" #myForm="ngForm" class="message-card message-form fadeIn fourth">
 
-  
-      <div >
-        <input type="name" id="name" name="name" placeholder="Enter your name"
+    <div class="message-form-controls-container">
+
+      <div>
+        <input class="message-form-control" type="name" id="name" name="name" placeholder="Enter your name"
           [(ngModel)]="sender" name="sender" required>
       </div>
 
       <div>
-        <input type="email" id="email" placeholder="Enter your email" [(ngModel)]="email"
+        <input class="message-form-control" type="email" id="email" placeholder="Enter your email" [(ngModel)]="email"
           name="email" required autofocus>
       </div>
 
       <div>
-        <input maxlength="20" type="phone" id="phone"
+        <input class="message-form-control" maxlength="15" class="message-form-control" type="phone" id="phone"
           placeholder="Enter your phone number" [(ngModel)]="phoneNumber" name="phone" required autofocus>
       </div>
 
@@ -29,7 +30,7 @@
         <textarea  [maxlength]="maxChars" #myInput class="message-form-control"
           type="message" id="message" name="message" placeholder="Enter your message" [(ngModel)]="message"
           name="message" required>
-        </textarea><label class="textarea-form">remaining characters: {{ myInput.value.length }} / {{ maxChars }}</label>
+        </textarea><label class="textarea-form">remaining characters: {{ myInput.value.length }} / {{maxChars}}</label>
       </div>
 
       <div>
@@ -38,7 +39,7 @@
         </button>
       </div>
 
-  
+    </div>
   </form>
 </div>
 <app-footer />

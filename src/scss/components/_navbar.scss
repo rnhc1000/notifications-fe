@@ -6,10 +6,19 @@ header {
 header nav#navbar {
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: space-between;
     max-width: 1240px;
-    padding: 0 4rem;
+    margin: 0 auto;
+    padding: 0 2rem;
     height: 6rem;
+}
+
+header nav#navbar .nav-brand {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    gap: 1rem;
+
 }
 
 header nav#navbar ul.nav-list {
@@ -30,4 +39,9 @@ header nav#navbar ul.nav-list li a {
 header nav#navbar ul.nav-list li a:hover {
     font-size: 1.75rem;
     color: rgb(81, 90, 226);
+}
+
+h4 {
+    color: blue;
+    font-size: 1.5rem;
 }

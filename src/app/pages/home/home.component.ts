@@ -1,19 +1,14 @@
-import { Component, ViewChild, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { NgForm, FormsModule, UntypedFormBuilder, Validators } from '@angular/forms';
-import {FormControl, ReactiveFormsModule} from '@angular/forms';
-
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { NgForm, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { MessageService } from '../../services/message.service';
 import { MessageData } from '../../interface/imessage-data';
 import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.component";
-import { merge } from 'rxjs';
 
 
 @Component({
@@ -27,17 +22,14 @@ import { merge } from 'rxjs';
         FooterComponent,
         FormsModule,
         CommonModule,
-        TimeOfDayComponent,
-        MatFormFieldModule,
-        MatInputModule,MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule],
-        changeDetection: ChangeDetectionStrategy.OnPush
-  
-    
+        TimeOfDayComponent
+    ]
 })
 
 export class HomeComponent implements OnInit {
 
   @ViewChild('myForm', { static: true }) messageForm!: NgForm;
+  email!: string;
   phoneNumber!: string;
   sender!: string;
   message!: string;
@@ -45,33 +37,23 @@ export class HomeComponent implements OnInit {
   formMode = false;
   hasError = null;
   submitted = false;
-  protected readonly value = signal('');
-
-  protected onInput(event: Event) {
-    this.value.set((event.target as HTMLInputElement).value);
-  }
-
-  readonly email = new FormControl('', [Validators.required, Validators.email]);
 
 
   constructor(
     private router: Router,
     private messageService: MessageService) {
-      merge(this.email.statusChanges, this.email.valueChanges)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.updateErrorMessage());
 
   }
 
   ngOnInit() {
-    // setTimeout(() => {
-    //   this.messageForm.form.setValue({
-    //     phone: '+0013121234567',
-    //     email: 'ricardo@ferreiras.dev.br',
-    //     sender: 'Ricardo Ferreira',
-    //     message: 'The quick brown fox dog jumps over the lazy dog....'
-    //   });
-    // }, 1000);
+    setTimeout(() => {
+      this.messageForm.form.setValue({
+        phone: '+0013121234567',
+        email: 'ricardo@ferreiras.dev.br',
+        sender: 'Ricardo Ferreira',
+        message: 'The quick brown fox dog jumps over the lazy dog....'
+      });
+    }, 1000);
 
   }
 
@@ -137,7 +119,7 @@ export class HomeComponent implements OnInit {
       )
   }
 
-  errorMessage = signal('');
+
   handleErrors(error: HttpErrorResponse) {
 
     console.error('An error ocurred...');
@@ -177,21 +159,5 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  updateErrorMessage() {
-    if (this.email.hasError('required')) {
-      this.errorMessage.set('You must enter a value');
-    } else if (this.email.hasError('email')) {
-      this.errorMessage.set('Not a valid email');
-    } else {
-      this.errorMessage.set('');
-    }
-  }
+  
 }
-
-
-
-
-function takeUntilDestroyed(): import("rxjs").OperatorFunction<unknown, unknown> {
-  throw new Error('Function not implemented.');
-}
-
