@@ -6,11 +6,11 @@ header {
 header nav#navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: right;
     max-width: 1240px;
     margin: 0 auto;
     padding: 0 2rem;
-    height: 6rem;
+    height: 7rem;
 }
 
 header nav#navbar .nav-brand {
@@ -31,7 +31,7 @@ header nav#navbar ul.nav-list {
 
 header nav#navbar ul.nav-list li a {
     color: var(--black);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     text-decoration: none;
 
 }

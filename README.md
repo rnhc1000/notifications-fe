@@ -35,7 +35,7 @@ The design is structured as shown:
 - main.ts
 - styles.css 
 ## _Screenshot_
-[![](./notification.png)]()
+[![](./notification-fe.png)]()
 ## _Links_
 - Live Site URL: [https://www.ferreiras.dev.br] 
 ## _Built with_

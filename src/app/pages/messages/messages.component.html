@@ -4,51 +4,33 @@
         Message Notification Service
       </div>
     <app-time-of-day />
-    <table mat-table class="lessons-table mat-elevation-z8" >
-        <ng-container matlumnDef="ID">
-
-            <th mat-header-cell *matHeaderllDef>#</th>
-
-            <td mat-cell *matCellDef="let messages">{{ messages.messageId }}</td>
-
-        </ng-container>
-
-        <ng-container matlumnDef="phone">
-
-            <th mat-header-cell *matHeaderllDef>#</th>
-
-            <td mat-cell *matCellDef="let messages">{{ messages.phone }}</td>
-
-        </ng-container>
-
-        <ng-container matlumnDef="email">
-
-            <th mat-header-cell *matHeaderllDef>#</th>
-
-            <td mat-cell *matCellDef="let messages">{{ messages.email }}</td>
-
-        </ng-container>
-
-        <ng-container matlumnDef="message">
-
-            <th mat-header-cell *matHeaderllDef>#</th>
-
-            <td mat-cell *matCellDef="let messages">{{ messages.message }}</td>
-
-        </ng-container>
-
-        <ng-container matlumnDef="createdAt">
-
-            <th mat-header-cell *matHeaderllDef>#</th>
-
-            <td class="duration-cell" mat-cell *matCellDef="let messages">{{ messages.createdAt }}</td>
-
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let messages;columns:displayedColumns"></tr>
-
-    </table>
+    <div class="container">
+        <div class="card m-5 p-3">
+            <div class="card-body">
+                <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
+                        <th>CreatedAt</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let message of messages">
+                        <td>{{ message.messageId }}</td>
+                        <td>{{ message.email }}</td>
+                        <td>{{ message.phone }}</td>
+                        <td>{{ message.message }} </td>
+                        <td>{{ message.createdAt }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+        </div>
+    </div>
 </section>
 
 <app-footer />

@@ -1,6 +1,4 @@
-@use '@angular/material' as mat;
 
-@include mat.core();
 * {
     margin: 0;
     padding: 0;
@@ -23,7 +21,8 @@ html
     height: 100%; 
     margin: 0 auto;
     background-size: cover;
-    background-color: var(--blue);
+    background-repeat: no-repeat;
+    background-image: linear-gradient( rgba(92, 80, 158, 0.05), rgba(162, 198, 247, 0.1)), url('../../assets/images/undraw_social_update_re_xhjr.svg');
     
 }
 
@@ -80,7 +79,7 @@ h3 {
 }
 
 h5 {
-    font-size: 1.5 rem;
+    font-size: 1 rem;
     font-weight: 200;
     line-height: 100%;
     margin: 0;
