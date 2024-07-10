@@ -2,6 +2,8 @@
 
 @include mat.core();
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -21,6 +23,7 @@ input, button, textarea, select {
 
 html
  {
+    height: 100%; 
     margin: 0 auto;
     background-size: cover;
     background-color: var(--blue);
@@ -28,7 +31,7 @@ html
 }
 
 body {
-    min-height: 100dvh;
+    height: 100%;
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
         "Segoe UI Symbol";
