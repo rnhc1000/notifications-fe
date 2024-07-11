@@ -2,34 +2,31 @@
 <section>
     <div class="message-service">
         Message Notification Service
-      </div>
+    </div>
     <app-time-of-day />
     <div class="container">
-        <div class="card m-5 p-3">
-            <div class="card-body">
-                <table class="table table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Message</th>
-                        <th>CreatedAt</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let message of messages">
-                        <td>{{ message.messageId }}</td>
-                        <td>{{ message.email }}</td>
-                        <td>{{ message.phone }}</td>
-                        <td>{{ message.message }} </td>
-                        <td>{{ message.createdAt }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-    
-        </div>
+
+        <table datatable [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger">
+            <thead class="table-title">
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>CreatedAt</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let message of messages">
+                    <td>{{ message.messageId }}</td>
+                    <td>{{ message.email }}</td>
+                    <td>{{ message.phone }}</td>
+                    <td>{{ message.message }} </td>
+                    <td>{{ message.createdAt }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </section>
 

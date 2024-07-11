@@ -1,9 +1,8 @@
-## Take-home Microservices Challenge
-This is how we faced the challenge of creating a frontend UI  to explore
-noitifications-api features
+## Message Notification Services FE
+Exploring Angular, Angular Material and Angular Datatables as FE to Message Notification Services API
 
 ## _Table of contents_
-- [Take-home Microservices Challenge](#take-home-microservices-challenge)
+- [Message Notification Services FE](#message-notification-services-fe)
 - [_Table of contents_](#table-of-contents)
 - [_Overview_](#overview)
 - [_Screenshot_](#screenshot)
@@ -107,11 +106,13 @@ export class MessageService {
 ``` 
 
 ## _Continued development_
-- maybe
+- When the notification is delivered to endpoint (SMS or email) change the message status.
+- 
 ### _Useful resources_
 - [https://angular.io] Build user interfaces out of individual pieces called components!.
 
 ## _Author_
 - Website - [https://ferreiras.dev.br] 
+- 
 ## Acknowledgments
 - 
