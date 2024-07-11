@@ -1,25 +1,59 @@
 @use '../../../../node_modules/datatables.net-dt/css/dataTables.dataTables.min.css';
 
 
-  .message {
-    display: flex;
-    width: 100%;
-    max-width: 640px;
-    height: 3rem;
-    justify-content: center;
-    align-items: center;
-    margin: 4rem auto;
-    padding: 1rem auto;
-    color: var(--black);
-    font-size: 1.5rem;
-    background-color: var(--blue);
-    border: 2px solid var(--blue);
-  }
+.message {
+  display: flex;
+  width: 100%;
+  max-width: 640px;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem auto;
+  padding: 1rem auto;
+  color: var(--black);
+  font-size: 1.5rem;
+  background-color: var(--blue);
+  border: 2px solid var(--blue);
+}
 
-  .message-service {
-    margin-top: 1rem;
-    font-size: 2rem;
-    color: var(--black);
-    text-align: center;
-    display: block;
-  }
+.message-service {
+  margin-top: 1rem;
+  font-size: 2rem;
+  color: var(--black);
+  text-align: center;
+  display: block;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+
+
+  justify-content: center;
+  align-items: center
+}
+
+table {
+  font-size: 1.5rem;
+
+}
+table,
+th,
+td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.table-title th {
+  font-size: 2rem;
+  font-weight: 400;
+}

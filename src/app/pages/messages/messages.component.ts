@@ -8,11 +8,11 @@ import { MessageService } from '../../services/message.service';
 import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.component";
 import { DataTablesModule } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import { Config } from 'datatables.net';
 import 'datatables.net-buttons-dt';
 import 'datatables.net-buttons/js/buttons.colVis.mjs';
 import 'datatables.net-buttons/js/buttons.html5.mjs';
 import 'datatables.net-buttons/js/buttons.print.mjs';
+import { ADTSettings } from 'angular-datatables/src/models/settings';
 
 @Component({
   selector: 'app-messages',
@@ -29,19 +29,16 @@ import 'datatables.net-buttons/js/buttons.print.mjs';
     NgFor
   ]
 })
+
 export class MessagesComponent implements OnInit, OnDestroy {
+
   public messages: MessageData[] = [];
 
-  dtOptions: Config = {};
+  dtOptions: ADTSettings = {};
 
   dtTrigger: Subject<any> = new Subject<any>
 
-
-
-  constructor(private messageService: MessageService,
-    
-  ) {
-
+  constructor(private messageService: MessageService) {
   }
 
   ngOnInit(): void {
@@ -58,6 +55,5 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
-
   }
 }
