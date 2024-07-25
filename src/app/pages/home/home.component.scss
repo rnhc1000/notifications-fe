@@ -1,8 +1,3 @@
-.message-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
   
   .message-form {
     display: flex;
@@ -12,6 +7,44 @@
     margin-top: 4rem;
   }
 
+  .message-form-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0.5rem auto;
+  }
+  
+
+  .message-form-controls-container {
+    width: 100%;
+    display: grid;
+    grid-gap: 1.5rem;
+    margin: 0.1rem 0;
+  }
+
+
+
+  .message-form-control {
+    width: 100%;
+    max-width: 360px;
+    height: 5rem;
+    font-size: 1.65rem;
+    font-style: italic;
+    font-weight: 300;
+    margin: 0 auto;
+    padding: 0 1rem;
+    color: var(--black-010);
+    background: none;
+    border-style: outset;
+    border-width: thin;
+  }
+
+  .message-form-control:focus {
+    outline: none;
+  }
+  
+  .message-form-control::placeholder {
+    color: var(--message-color-font-placeholder);
+  }
   .message-menu-item {
     margin-left: 1rem;
     display: flex;
@@ -24,12 +57,7 @@
     background-color: none;
   }
   
-  .message-form-container {
-    width: 100%;
-    max-width: 480px;
-    margin: 1rem auto;
-  }
-  
+
   .message-form-buttons {
     width: 100%;
   }
@@ -54,34 +82,6 @@
     color: var(--black);
   }
 
-  .message-form-controls-container {
-    width: 100%;
-    display: grid;
-    grid-gap: 1rem;
-    margin: 1rem 0;
-  }
-
-  .message-form-control {
-    width: 100%;
-    height: 4rem;
-    font-size: 1.65rem;
-    font-weight: 300;
-    margin: 0 auto;
-    padding: 0 1rem;
-    color: var(--black);
-    background: none;
-    border: none;
-    border-style: outset;
-    border-width: thick;
-  }
-
-  .message-form-control:focus {
-    outline: none;
-  }
-  
-  .message-form-control::placeholder {
-    color: var(--message-color-font-placeholder);
-  }
   
   .message-input-error {
     border: 1px solid var(--message-color-error);
@@ -97,6 +97,13 @@
     font-size: 1rem;
     margin-top: 0.5rem;
     color: var(--black-10);
+
+  }
+  
+  textarea {
+    width: 360px;
+    height: 360px;
+
   }
 
   .textarea-form-message {

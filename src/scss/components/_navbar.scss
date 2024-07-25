@@ -6,11 +6,11 @@ header {
 header nav#navbar {
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: space-between;
     max-width: 1240px;
     margin: 0 auto;
     padding: 0 2rem;
-    height: 7rem;
+    height: 5rem;
 }
 
 header nav#navbar .nav-brand {

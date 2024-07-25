@@ -6,6 +6,10 @@ export interface MessageData {
         message: string,
         email: string,
         phone: string,
-        messageId: string
+        messageId: string,
+        totalItems: string,
+        currentPage: string,
+        totalPages: string,
+        size: string
     }
 

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { MessagesComponent } from './pages/messages/messages.component';
-import { LogsComponent } from './pages/logs/logs.component';
+import { PaginationComponent } from './pages/pagination/pagination.component';
 
 export const routes: Routes = [
     {
@@ -14,10 +14,6 @@ export const routes: Routes = [
     },
     {
         path: 'messages',
-        component: MessagesComponent
-    },
-    {
-        path: 'logs',
-        component: LogsComponent
+        component: PaginationComponent
     }
 ];
