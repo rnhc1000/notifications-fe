@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LogsComponent } from './logs.component';
+import { PaginationComponent } from './pagination.component';
 
-describe('LogsComponent', () => {
-  let component: LogsComponent;
-  let fixture: ComponentFixture<LogsComponent>;
+describe('PaginationComponent', () => {
+  let component: PaginationComponent;
+  let fixture: ComponentFixture<PaginationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LogsComponent]
+      imports: [PaginationComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LogsComponent);
+    fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
