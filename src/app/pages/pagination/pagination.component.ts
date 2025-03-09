@@ -1,17 +1,19 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { FooterComponent } from "../../components/footer/footer.component";
-import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.component";
-import { RouterOutlet } from '@angular/router';
-import { MessageService } from '../../services/message.service';
-import { MessagesDataSourceService } from '../../services/messages-data-source.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgIf } from '@angular/common';
-
+import { MessageService } from '../../services/message.service';
+import { MessageData } from '../../interface/imessage-data';
+import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.component";
 
 @Component({
   selector: 'app-pagination',
@@ -25,61 +27,43 @@ import { NgIf } from '@angular/common';
     MatSortModule,
     MatPaginatorModule,
     RouterOutlet,
-    TimeOfDayComponent,
-    NgIf
-  ],
-  providers: [
-    MessagesDataSourceService,
-    MessageService,
-  ],
+    NgIf,
+    TimeOfDayComponent
+],
   templateUrl: './pagination.component.html',
-  styleUrl: './pagination.component.scss'
+  styleUrls: ['./pagination.component.scss'],
+  providers: [MessageService]
 })
-
 export class PaginationComponent implements OnInit {
-  sortMessages(sort: Sort): void {
-    this.dataSource.loadMessages();
-  }
-
   title = 'messages';
+  displayedColumns: string[] = ['id', 'sender', 'email', 'phone', 'message', 'status', 'createdAt'];
+  dataSource: MatTableDataSource<MessageData>;
 
-
-  displayedColumns: string[] = ['id', 'email', 'phone', 'message', 'status', 'createdAt'];
-  dataSource = new MessagesDataSourceService(this.messageService);
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator
-  // @ViewChild(MatSort) sort!: MatSort;
-  // messages: any;
-
-  // fetchMessages() {
-  //   return this.messageService.getMessages()
-  //   .subscribe((response: any) => {
-  //     this.messages = response;
-
-  //   })
-  // }
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private messageService: MessageService) {
-
+    this.dataSource = new MatTableDataSource<MessageData>([]);
   }
-
-
+  
   ngOnInit(): void {
-    // this.dataSource.loadSortedMessages({active: 'messageId', direction: 'asc'});
-    this.dataSource.loadMessages();
-
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.fetchMessages();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.fetchMessages();
+  }
 
+  fetchMessages(): void {
+    this.messageService.getPagedMessages(0, 5).subscribe({
+      next: (data: MessageData[]) => {
+        this.dataSource.data = data;
+      },
+      error: (err) => console.error('Failed to fetch messages', err)
+    });
+  }
 }
-
-
-function fetchMessages() {
-  throw new Error('Function not implemented.');
-}
-
-function applyFilter(event: Event | undefined, Event: { new(type: string, eventInitDict?: EventInit): Event; prototype: Event; readonly NONE: 0; readonly CAPTURING_PHASE: 1; readonly AT_TARGET: 2; readonly BUBBLING_PHASE: 3; }) {
-  throw new Error('Function not implemented.');
-}
-

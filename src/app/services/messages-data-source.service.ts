@@ -12,6 +12,7 @@ export class MessagesDataSourceService  extends DataSource<MessageData>{
 
   messages$ = new BehaviorSubject<MessageData[]>([]);
   isLoading$ = new BehaviorSubject<boolean>(false);
+  paginator: any;
 
   constructor(private messageService: MessageService) {
     super();

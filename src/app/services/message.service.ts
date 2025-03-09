@@ -24,7 +24,7 @@ export class MessageService {
 
   register(data: SubscriberData) {
 
-    return this.http.post<SubscriberData>('http://192.168.15.11:8095/messages', {
+    return this.http.post<SubscriberData>('http://192.168.0.12:8095/messages', {
       sender: data.sender,
       email: data.email,
       phone: data.phone,
@@ -42,7 +42,7 @@ export class MessageService {
 
   getMessages(): Observable<MessageData[]> {
 
-    return this.http.get<MessageData[]>('http://192.168.15.11:8095/messages')
+    return this.http.get<MessageData[]>('http://192.168.0.12:8095/messages')
       .pipe(
         tap((response: any) => {
           this.statusChange.emit(response);
@@ -57,7 +57,7 @@ export class MessageService {
     .set('_order', sort.direction);
     
 
-    return this.http.get<MessageData[]>('http://192.168.15.11:8095/messages', {
+    return this.http.get<MessageData[]>('http://192.168.0.12:8095/messages', {
       params,
     })
       .pipe(
@@ -71,7 +71,7 @@ export class MessageService {
   getPagedMessages(page: number, size: number): Observable<MessageData[]> {
 
 
-    return this.http.get<MessageData[]>('http://192.168.15.11:8095/pagedMessages')
+    return this.http.get<MessageData[]>('http://192.168.0.12:8095/pagedMessages')
       .pipe(
         tap((response: any) => {
           this.statusChange.emit(response);
