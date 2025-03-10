@@ -23,20 +23,15 @@
                     <td>{{ message.email }}</td>
                     <td>{{ message.phone }}</td>
                     <td>{{ message.message }} </td>
-                    <td>{{ message.createdAt }}</td> 
+                    <td>{{ message.createdAt }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <pagination-controls 
-                         [maxSize]="totalItems"
-                         [directionLinks]="directionLinks"
-                         [autoHide]="autoHide"
-                         [responsive]="responsive"
-                         [previousLabel]="labels.previousLabel"
-                         [nextLabel]="labels.nextLabel"
-                         (pageChange)="onPageChange($event)"
-                         ></pagination-controls>
+    <pagination-controls [maxSize]="totalItems" [directionLinks]="directionLinks" [autoHide]="autoHide"
+        [responsive]="responsive" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+        (pageChange)="onPageChange($event)">
+    </pagination-controls>
 </section>
 
 <app-footer />

@@ -13,6 +13,8 @@ export class MessageService {
 
 
   statusChange: EventEmitter<any> = new EventEmitter();
+  totalMessages: any;
+  messages: any;
 
   constructor(private http: HttpClient) {
 
@@ -77,15 +79,16 @@ export class MessageService {
           this.statusChange.emit(response);
           this.totalItems = response.totalItems;
           this.totalPages = response.totalPages;
+        
           console.log("---");
-          console.log(response);
-          console.log(response.totalItems);
-          console.log(response.totalPages);
-          console.log(response.currentPage);
+          console.log(response.content);
+          console.log(response.content.totalMessages);
+          console.log(response.content.totalMessages);
           console.log("---");
 
         }),
-        map((response: any) => response.messages),
+
+        map((response: any) => response.content),
         
       )
 

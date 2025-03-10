@@ -47,14 +47,14 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.messageForm.form.setValue({
-        phone: '+0013121234567',
-        email: 'ricardo@ferreiras.dev.br',
-        sender: 'Ricardo Ferreira',
-        message: 'The quick brown fox dog jumps over the lazy dog....'
-      });
-    }, 1000);
+    // setTimeout(() => {
+    //   this.messageForm.form.setValue({
+    //     phone: '+0013121234567',
+    //     email: 'ricardo@ferreiras.dev.br',
+    //     sender: 'Ricardo Ferreira',
+    //     message: 'The quick brown fox dog jumps over the lazy dog....'
+    //   });
+    // }, 1000);
 
   }
 

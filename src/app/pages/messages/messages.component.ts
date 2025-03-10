@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { MessageData } from '../../interface/imessage-data';
@@ -14,7 +13,6 @@ import { NgxPaginationModule, PaginationInstance } from 'ngx-pagination';
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.scss',
   imports: [
-    RouterLink,
     FooterComponent,
     NavbarComponent,
     TimeOfDayComponent,

@@ -11,20 +11,20 @@
 
     <div class="message-form-controls-container">
 
-      <input class="message-form-control" type="text" id="name" name="name" placeholder="Enter your name"
+      <input class="message-form-control" type="text" id="name" name="name" placeholder="Enter your name..."
         [(ngModel)]="sender" name="sender" required autocomplete="given-name" autofocus>
 
 
-      <input class="message-form-control" type="email" id="email" placeholder="Enter your email" 
+      <input class="message-form-control" type="email" id="email" placeholder="Enter your email..." 
       [(ngModel)]="email" name="email" autocomplete="off" required >
 
       <input class="message-form-control" maxlength="15" class="message-form-control" type="phone" id="phone"
-        placeholder="Enter your phone number" [(ngModel)]="phoneNumber" name="phone" autocomplete="off"  required>
+        placeholder="Enter your phone number..." [(ngModel)]="phoneNumber" name="phone" autocomplete="off"  required>
 
       <textarea class="textarea-form" [maxlength]="maxChars" #myInput class="message-form-control" type="message"
-        id="message" name="message" placeholder="Enter your message" [(ngModel)]="message" name="message" required>
+        id="message" name="message" placeholder="Enter your message..." [(ngModel)]="message" name="message" required>
         </textarea>
-      <p class="textarea-form-message">remaining characters: {{ myInput.value.length }} / {{maxChars}}</p>
+      <span class="textarea-form-message">remaining characters: {{ myInput.value.length }} / {{maxChars}}</span>
 
       <div>
         <button type="submit" class="underlineHover message-btn message-text message-btn-primary ">
