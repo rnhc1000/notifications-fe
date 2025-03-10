@@ -1,4 +1,5 @@
 <app-navbar />
+
 <section>
     <div class="message-service">
         Message Notification Service
@@ -6,8 +7,7 @@
     <app-time-of-day />
     <div class="container">
 
-        <table datatable [dtOptions]="dtOptions"
-            [dtTrigger]="dtTrigger">
+        <table>
             <thead class="table-title">
                 <tr>
                     <th>ID</th>
@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let message of messages">
+                <tr *ngFor="let message of messages | paginate:  config">
                     <td>{{ message.messageId }}</td>
                     <td>{{ message.email }}</td>
                     <td>{{ message.phone }}</td>
@@ -28,6 +28,10 @@
             </tbody>
         </table>
     </div>
+    <pagination-controls [maxSize]="totalItems" [directionLinks]="directionLinks" [autoHide]="autoHide"
+        [responsive]="responsive" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel"
+        (pageChange)="onPageChange($event)">
+    </pagination-controls>
 </section>
 
 <app-footer />

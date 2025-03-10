@@ -1,18 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { MessageData } from '../../interface/imessage-data';
 import { MessageService } from '../../services/message.service';
 import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.component";
-import { DataTablesModule } from 'angular-datatables';
-import { Subject } from 'rxjs';
-import 'datatables.net-buttons-dt';
-import 'datatables.net-buttons/js/buttons.colVis.mjs';
-import 'datatables.net-buttons/js/buttons.html5.mjs';
-import 'datatables.net-buttons/js/buttons.print.mjs';
-import { ADTSettings } from 'angular-datatables/src/models/settings';
+import { NgxPaginationModule, PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-messages',
@@ -20,40 +13,85 @@ import { ADTSettings } from 'angular-datatables/src/models/settings';
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.scss',
   imports: [
-    RouterLink,
     FooterComponent,
     NavbarComponent,
     TimeOfDayComponent,
-    DataTablesModule,
     CommonModule,
-    NgFor
-  ]
+    NgFor,
+    NgxPaginationModule,
+  ],
+  changeDetection: ChangeDetectionStrategy.Default
+
 })
+
 
 export class MessagesComponent implements OnInit, OnDestroy {
 
-  public messages: MessageData[] = [];
 
-  dtOptions: ADTSettings = {};
+  @Input('data') messages: MessageData[] = [];
 
-  dtTrigger: Subject<any> = new Subject<any>
+
+  page: number = 1;
+  totalItems!: number;
+  totalPages!: number;
+  size!: number;
+  public directionLinks: boolean = true;
+  public autoHide: boolean = false;
+  public responsive: boolean = false
+
+  public config: PaginationInstance = {
+    itemsPerPage: 12,
+    currentPage: 1,
+    totalItems: this.totalItems
+  };
+
+  public labels: any = {
+    previousLabel: 'Previous',
+    nextLabel: 'Next',
+    screenReaderPaginationLabel: 'Pagination',
+    screenReaderPageLabel: 'page',
+    screenReaderCurrentLabel: `You're on page`
+}
+
+  onPageChange(number: number) {
+    this.logEvent(`pageChange(${number})`);
+    this.config.currentPage = number;
+  }
+
+  private logEvent(message: string) {
+    this.eventLog.unshift(`${new Date().toISOString()}: ${message}`)
+  }
+
+  public eventLog: string[] = [];
 
   constructor(private messageService: MessageService) {
   }
 
   ngOnInit(): void {
-    this.fetchMessages();
+    this.fetchPagedMessages(this.page);
   }
 
   fetchMessages(): void {
     this.messageService.getMessages()
-    .subscribe((response: any) => {
-      this.messages = response;
-      this.dtTrigger.next;
-    });
+      .subscribe((response: any) => {
+        this.messages = response;
+
+      });
+  }
+
+  fetchPagedMessages(page: number) {
+    this.messageService.getPagedMessages(this.page, this.size)
+      .subscribe((response: any) => {
+
+        this.messages = response;
+        console.log(this.page);
+        console.log(this.size);
+        console.log(this.totalItems);
+        console.log(this.totalPages);
+        console.log(response);
+      })
   }
 
   ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
   }
 }

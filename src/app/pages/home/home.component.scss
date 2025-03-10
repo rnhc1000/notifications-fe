@@ -1,10 +1,4 @@
-.message-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .message-form {
+ .message-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +6,45 @@
     margin-top: 4rem;
   }
 
+  .message-form-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0.5rem auto;
+  }
+  
+
+  .message-form-controls-container {
+    width: 100%;
+    display: grid;
+    grid-gap: 1.5rem;
+    margin: 0.1rem 0;
+  }
+
+  .message-form-control {
+    width: 100%;
+    max-width: 360px;
+    height: 5rem;
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 300;
+    margin: 0 auto;
+    padding: 0 1rem;
+    color: var(--message-color-font-placeholder);
+    background: white;
+    border-style: outset;
+    border-width: thin;
+    border-color: black;
+    border-radius: 0.5rem;
+    text-align: left;
+  }
+
+  .message-form-control:focus {
+    outline: none;
+  }
+  
+  .message-form-control::placeholder {
+    color: var(--message-color-font-placeholder);
+  }
   .message-menu-item {
     margin-left: 1rem;
     display: flex;
@@ -24,12 +57,7 @@
     background-color: none;
   }
   
-  .message-form-container {
-    width: 100%;
-    max-width: 480px;
-    margin: 1rem auto;
-  }
-  
+
   .message-form-buttons {
     width: 100%;
   }
@@ -38,50 +66,25 @@
   .message-btn {
     width: 100%;
     height: 42px;
-    font-size: 16px;
+    font-size: 2rem;
     font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    color: var(--blue);
+
   }
   
   .message-btn-primary {
     border: none;
     background: none;
-    font-size: 1.5rem;
-    font-weight: 200;
-    color: var(--black);
+    font-size: 2rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--blue);
   }
 
-  .message-form-controls-container {
-    width: 100%;
-    display: grid;
-    grid-gap: 1rem;
-    margin: 1rem 0;
-  }
-
-  .message-form-control {
-    width: 100%;
-    height: 4rem;
-    font-size: 1.65rem;
-    font-weight: 300;
-    margin: 0 auto;
-    padding: 0 1rem;
-    color: var(--black);
-    background: none;
-    border: none;
-    border-style: outset;
-    border-width: thick;
-  }
-
-  .message-form-control:focus {
-    outline: none;
-  }
-  
-  .message-form-control::placeholder {
-    color: var(--message-color-font-placeholder);
-  }
   
   .message-input-error {
     border: 1px solid var(--message-color-error);
@@ -97,11 +100,20 @@
     font-size: 1rem;
     margin-top: 0.5rem;
     color: var(--black-10);
+    text-align: left
+
+  }
+  
+  textarea {
+    width: 360px;
+    height: 360px;
+
   }
 
   .textarea-form-message {
     font-size: 1rem;
-    color: var(--black)
+    color: black;
+    text-align: right
   }
   .message-text {
     font-size: 2rem;
@@ -178,16 +190,16 @@
     width: 0;
     height: 2px;
     margin-top: 0.5rem;
-    background-color: blue;
+    background-color: var(--blue);
     content: "";
     transition: width 0.2s;
     
   }
   
   .underlineHover:hover {
-    color: blue;
-    font-weight: 400;
-    font-size: 2rem;
+    color: var(--blue);
+    font-weight: 500;
+    font-size: 3rem;
     padding-bottom: 2rem;
     cursor: pointer;
   }

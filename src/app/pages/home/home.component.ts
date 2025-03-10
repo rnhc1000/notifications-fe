@@ -12,18 +12,18 @@ import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.com
 
 
 @Component({
-    selector: 'app-home',
-    standalone: true,
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss',
-    imports: [
-        RouterLink,
-        NavbarComponent,
-        FooterComponent,
-        FormsModule,
-        CommonModule,
-        TimeOfDayComponent
-    ]
+  selector: 'app-home',
+  standalone: true,
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
+  imports: [
+    RouterLink,
+    NavbarComponent,
+    FooterComponent,
+    FormsModule,
+    CommonModule,
+    TimeOfDayComponent
+  ]
 })
 
 export class HomeComponent implements OnInit {
@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   formMode = false;
   hasError = null;
   submitted = false;
+  name: any;
 
 
   constructor(
@@ -46,14 +47,14 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.messageForm.form.setValue({
-        phone: '+0013121234567',
-        email: 'ricardo@ferreiras.dev.br',
-        sender: 'Ricardo Ferreira',
-        message: 'The quick brown fox dog jumps over the lazy dog....'
-      });
-    }, 1000);
+    // setTimeout(() => {
+    //   this.messageForm.form.setValue({
+    //     phone: '+0013121234567',
+    //     email: 'ricardo@ferreiras.dev.br',
+    //     sender: 'Ricardo Ferreira',
+    //     message: 'The quick brown fox dog jumps over the lazy dog....'
+    //   });
+    // }, 1000);
 
   }
 
@@ -92,8 +93,8 @@ export class HomeComponent implements OnInit {
   handleSuccess(data: MessageData) {
 
     const timeStampSent = new Date(data.createdAt);
-    
-    const dateAndTime: string  = timeStampSent.toLocaleString();
+
+    const dateAndTime: string = timeStampSent.toLocaleString();
 
     Swal.fire({
       titleText: 'Message Sent at!',
@@ -105,18 +106,18 @@ export class HomeComponent implements OnInit {
       timerProgressBar: true
 
     }).then((result) => {
-      
-          setTimeout(() => {
-            this.messageForm.form.setValue({
-              phone: '+0013121234567',
-              email: 'ricardo@ferreiras.dev.br',
-              sender: 'Ricardo Ferreira',
-              message: 'The quick brown fox dog jumps over the lazy dog....'
-            });
-          }, 1000);
-      
-        }
-      )
+
+      setTimeout(() => {
+        this.messageForm.form.setValue({
+          phone: '+0013121234567',
+          email: 'ricardo@ferreiras.dev.br',
+          sender: 'Ricardo Ferreira',
+          message: 'The quick brown fox dog jumps over the lazy dog....'
+        });
+      }, 1000);
+
+    }
+    )
   }
 
 
@@ -159,5 +160,5 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  
+
 }
