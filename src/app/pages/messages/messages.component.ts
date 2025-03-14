@@ -80,7 +80,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   fetchPagedMessages(page: number) {
-    this.messageService.getPagedMessages(this.page, this.size)
+    this.messageService.getPagedMessages()
       .subscribe((response: any) => {
 
         this.messages = response;
