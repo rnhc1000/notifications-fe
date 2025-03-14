@@ -70,7 +70,7 @@ export class MessageService {
       )
   }
 
-  getPagedMessages(page: number, size: number): Observable<MessageData[]> {
+  getPagedMessages(): Observable<MessageData[]> {
 
 
     return this.http.get<MessageData[]>('http://192.168.0.12:8095/pagedMessages')

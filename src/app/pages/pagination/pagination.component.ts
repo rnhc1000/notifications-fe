@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,7 +11,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MessageService } from '../../services/message.service';
 import { MessageData } from '../../interface/imessage-data';
-import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.component";
 
 @Component({
   selector: 'app-pagination',
@@ -23,10 +22,8 @@ import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.com
     MatInputModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule,
-
-    TimeOfDayComponent
-],
+    MatPaginatorModule
+  ],
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
   providers: [MessageService],
@@ -36,39 +33,43 @@ import { TimeOfDayComponent } from "../../components/time-of-day/time-of-day.com
 export class PaginationComponent implements AfterViewInit {
   title = 'messages';
 
-  displayedColumns: string[] = ['messageId', 'sender', 'email', 'phone', 'message',  'createdAt', 'status'];
+  displayedColumns: string[] = ['messageId', 'sender', 'email', 'phone', 'message', 'createdAt', 'status'];
   dataSource: MatTableDataSource<MessageData>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService, private readonly cdr: ChangeDetectorRef) {
     this.dataSource = new MatTableDataSource<MessageData>([]);
   }
 
 
   ngAfterViewInit() {
-    this.fetchMessages();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
-  fetchMessages(): void {
-    this.messageService.getPagedMessages(0, 5).subscribe({
-      next: (data: MessageData[]) => {
-        this.dataSource.data = data;
-      },
-      error: (err) => console.error('Failed to fetch messages', err)
-    });
+    this.cdr.detectChanges(); // Trigger change detection manually to update the view with paginator and sorter
+    this.fetchMessages();
   }
 
   // fetchMessages(): void {
-  //   this.dataSource.data = [];
-  //   console.log("Fetching messages...");
-  //   this.messageService.getPagedMessages(0, 5).subscribe((data: MessageData[]) => {
-  //     console.log("::: Data received: :::", data);
-  //     this.dataSource.data =data;
-  //   }, error => {
-  //     console.error('Failed to fetch messages', error);
+  //   this.messageService.getPagedMessages(0, 5).subscribe({
+  //     next: (data: MessageData[]) => {
+  //       this.dataSource.data = data;
+  //     },
+  //     error: (err) => console.error('Failed to fetch messages', err)
+  // ng new my-app --no-standalone
   //   });
   // }
+
+  fetchMessages(): void {
+    this.dataSource.data = [];
+    console.log("Fetching messages...");
+    this.messageService.getPagedMessages().subscribe({
+      next: (data: MessageData[]) => {
+      console.log("::: Data received: :::", data);
+      this.dataSource.data = data;
+    }, 
+    error: (err) => {
+      console.error('Failed to fetch messages', err);
+    }});
+  }
 }
