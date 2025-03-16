@@ -22,6 +22,7 @@
     "@angular/router": "^18.0.5",
     "@sweetalert2/theme-dark": "^5.0.16",
     "angular-datatables": "^18.0.0",
+    "bootstrap": "^5.3.3",
     "datatables.net": "^2.0.3",
     "datatables.net-buttons-dt": "^3.0.2",
     "datatables.net-datetime": "^1.5.2",

@@ -5,12 +5,13 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    // border-top: 1px solid rgb(39, 39, 54);
+    border-top: 1px solid rgb(39, 39, 54);
   }
 
   h5 {
-    color: var(--blue);
+    color: black;
     margin: 1rem auto;
     font-weight: 300;
     font-size: 1.25rem;
+    font-style: italic;
   }
